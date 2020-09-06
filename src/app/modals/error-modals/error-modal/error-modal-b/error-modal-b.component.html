@@ -1,0 +1,12 @@
+
+<h2 mat-dialog-title >Something has happened!</h2 >
+
+<mat-dialog-content >
+	<ng-container *ngFor="let error of errorList" >
+        <div>{{error}}</div>
+	</ng-container >
+</mat-dialog-content >
+
+<mat-dialog-actions align="end" >
+	<button class="mat-raised-button mat-primary" (click)="close()" >OK</button >
+</mat-dialog-actions >

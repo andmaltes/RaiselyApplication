@@ -1,0 +1,33 @@
+h1 {
+  font-size: 24px;
+  font-weight: 500;
+  width: 100%;
+  display: block;
+  margin-bottom: 15px;
+
+}
+
+h2 {
+  color: rgba(0, 0, 0, .54);
+  margin-bottom: 15px;
+  font-size: 17px;
+  line-height: 23px;
+  font-weight: 100;
+}
+
+
+.mat {
+  &-flat-button {
+    width: 100%;
+  }
+
+  &-form-field {
+    width: 100%;
+
+    input {
+      width: 100%;
+    }
+  }
+
+
+}

@@ -1,0 +1,80 @@
+<h1>
+    Signup
+</h1>
+<h2>
+    Create a new free account and star receiving special offers!
+</h2>
+<ng-container [formGroup]="signupForm">
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput type="text">
+        <mat-spinner *ngIf="userExists === EnumUserExists.checking"  diameter="20" color="accent" matSuffix></mat-spinner>
+        <mat-icon *ngIf="userExists === EnumUserExists.valid"
+                  matSuffix>check</mat-icon>
+        <mat-error *ngIf="signupForm.controls['email'].errors">
+            <span *ngIf="signupForm.controls['email'].errors['required']">
+                Email is required
+            </span>
+            <span *ngIf="signupForm.controls['email'].errors['email']">
+                Please enter a valid email address
+            </span>
+            <span *ngIf="signupForm.controls['email'].errors['exists']">
+                The email address is already in use, please use a different email address
+            </span>
+            <span *ngIf="signupForm.controls['email'].errors['unknown']">
+                Something has happened, please try again later.
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>First Name</mat-label>
+        <input formControlName="firstName" matInput type="text">
+        <mat-error *ngIf="signupForm.controls['firstName'].errors">
+            <span *ngIf="signupForm.controls['firstName'].errors['required']">
+                First name is required
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Last Name</mat-label>
+        <input formControlName="lastName" matInput type="text">
+        <mat-error *ngIf="signupForm.controls['lastName'].errors">
+            <span *ngIf="signupForm.controls['lastName'].errors['required']">
+                Last name is required
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input [type]="hidePassword ? 'password' : 'text'" formControlName="password" matInput type="text">
+        <button (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePassword" mat-icon-button
+                matSuffix>
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="signupForm.controls['password'].errors">
+            <span *ngIf="signupForm.controls['password'].errors['required']">
+                Password is required
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="example-form-field">
+        <mat-label>Confirm Password</mat-label>
+        <input [type]="hidePasswordConfirmation ? 'password' : 'text'" formControlName="confirmPassword" matInput
+               type="text">
+        <button (click)="hidePasswordConfirmation = !hidePasswordConfirmation" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePasswordConfirmation"
+                mat-icon-button matSuffix>
+            <mat-icon>{{hidePasswordConfirmation ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="signupForm.controls['confirmPassword'].errors">
+            <span *ngIf="signupForm.controls['confirmPassword'].errors['required']">
+                Password confirmation is required
+            </span>
+            <span *ngIf="signupForm.controls['confirmPassword'].errors['validatePassword']">
+                Password does not match
+            </span>
+        </mat-error>
+    </mat-form-field>
+    <button color="primary" mat-flat-button (click)="submit()" >Sign me in!</button>
+</ng-container>
